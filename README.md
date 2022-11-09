@@ -2,6 +2,8 @@
 
 #### **mit Johannes Hoppe**
 
+[![Join the chat at https://gitter.im/angular-schule/2022-11-regensburg](https://badges.gitter.im/angular-schule/2022-11-regensburg.svg)](https://gitter.im/angular-schule/2022-11-regensburg?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <hr>
 
 **Herzlich Willkommen – und schön, dass du dabei bist!**  

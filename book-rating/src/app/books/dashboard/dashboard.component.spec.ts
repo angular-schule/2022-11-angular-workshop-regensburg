@@ -16,15 +16,14 @@ import { DashboardComponent } from './dashboard.component';
 //   @Output() rateDown = new EventEmitter<Book>();
 // }
 
-describe('DashboardComponent', () => {
+describe(DashboardComponent.name, () => {
   let component: DashboardComponent;
   let fixture: ComponentFixture<DashboardComponent>;
+  let mock: jasmine.SpyObj<BookRatingService>;
 
   beforeEach(async () => {
 
-    const bookRatingMock = {
-      rateUp: (book: Book) => book
-    };
+    mock = jasmine.createSpyObj(BookRatingService.name, ['rateUp'])
 
     await TestBed.configureTestingModule({
       declarations: [
@@ -33,7 +32,7 @@ describe('DashboardComponent', () => {
       ],
       providers: [{
         provide: BookRatingService,
-        useValue: bookRatingMock
+        useValue: mock
       }]
     })
     .compileComponents();
@@ -44,12 +43,11 @@ describe('DashboardComponent', () => {
   });
 
   it('rateUp() should forward all calls to BookRatingService', () => {
-    const rs = TestBed.inject(BookRatingService);
-    spyOn(rs, 'rateUp').and.callThrough();
 
     const book = {} as Book;
-    component.doRateUp(book);
 
-    expect(rs.rateUp).toHaveBeenCalledOnceWith(book);
+    mock.rateUp.and.returnValue(book);
+    component.doRateUp(book);
+    expect(mock.rateUp).toHaveBeenCalledOnceWith(book);
   });
 });

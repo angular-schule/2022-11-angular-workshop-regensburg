@@ -14,10 +14,14 @@ export class BookComponent {
   @Output() rateDown = new EventEmitter<Book>();
 
   doRateUp() {
-    this.rateUp.emit(this.book);
+    if (this.book) {
+      this.rateUp.next(this.book);
+    }
   }
 
   doRateDown() {
-    this.rateDown.emit(this.book);
+    if (this.book) {
+      this.rateDown.next(this.book);
+    }
   }
 }

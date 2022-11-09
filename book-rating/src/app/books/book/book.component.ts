@@ -13,6 +13,20 @@ export class BookComponent {
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();
 
+  private superModus = false;
+
+  ngOnInit() {
+
+    if (this.book?.title === 'Angular') {
+      this.superModus = true;
+    }
+  }
+  ngOnchanges() {
+
+    // zeugs
+    this.superModus = false;
+  }
+
   doRateUp() {
     this.rateUp.emit(this.book);
   }

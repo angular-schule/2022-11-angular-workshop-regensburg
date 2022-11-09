@@ -11,7 +11,19 @@
     <p>{{ book.description }}</p>
     <p>Preis: {{ book.price | currency:'EUR' }}</p>
 
-    <button [disabled]="book.rating <= 1" class="btn btn-primary me-2" (click)="doRateDown()">-1</button>
-    <button [disabled]="book.rating >= 5" class="btn btn-primary"      (click)="doRateUp()">+1</button>
+    <!--
+      TODO / Refactor me! :-)
+
+      1. State mutiert
+      2. Logik im Template
+      3. Single Responsibility verletzt
+
+    -->
+
+    <button [disabled]="book.rating <= 1" class="btn btn-primary me-2"
+      (click)="book.rating = book.rating - 1">-1</button>
+
+    <button [disabled]="book.rating >= 5" class="btn btn-primary"
+      (click)="book.rating = book.rating + 1">+1</button>
 </div>
 </div>

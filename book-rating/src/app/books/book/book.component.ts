@@ -8,21 +8,10 @@ import { Book } from '../shared/book';
 })
 export class BookComponent {
 
-  @Input()
-  private _book?: Book | undefined;
-  public get book(): Book | undefined {
-    return this._book;
-  }
-  public set book(value: Book | undefined) {
-    this._book = value;
-    //irgendeine Prüfung
-    this.supermodus = false;
-  }
+  @Input() book?: Book;
 
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();
-
-
 
   doRateUp() {
     this.rateUp.emit(this.book);

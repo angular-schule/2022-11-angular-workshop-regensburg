@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
+import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
   selector: 'br-dashboard',
@@ -12,31 +13,11 @@ import { BookRatingService } from '../shared/book-rating.service';
 export class DashboardComponent {
   books: Book[] = [];
 
-  constructor(private rs: BookRatingService) {
-    this.books = [
-      {
-        isbn: '123',
-        title: 'Angular',
-        description: 'Grundlagen und mehr',
-        price: 36.9,
-        rating: 5
-      },
-      {
-        isbn: '456',
-        title: 'Vue.js',
-        description: 'Das grüne Framework',
-        price: 32.9,
-        rating: 3
-      },
-      {
-        isbn: '121',
-        title: 'jQuery',
-        description: 'Veraltet',
-        price: 9,
-        rating: 1
-      }
-    ];
+  constructor(private rs: BookRatingService,
+    private bs: BookStoreService,
+    private cd: ChangeDetectorRef) {
 
+    this.bs.getAll().subscribe(books => { this.books = books; cd.detectChanges(); });
     // setInterval(() => this.books = [], 1000)
   }
 

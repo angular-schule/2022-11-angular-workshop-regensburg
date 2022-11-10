@@ -1,11 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  // Achtung: bug sobald wir HTTP einführen!
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
   books: Book[] = [];
@@ -25,8 +27,17 @@ export class DashboardComponent {
         description: 'Das grüne Framework',
         price: 32.9,
         rating: 3
+      },
+      {
+        isbn: '121',
+        title: 'jQuery',
+        description: 'Veraltet',
+        price: 9,
+        rating: 1
       }
     ];
+
+    // setInterval(() => this.books = [], 1000)
   }
 
   doRateUp(book: Book) {

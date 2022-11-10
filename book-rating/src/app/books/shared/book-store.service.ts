@@ -9,7 +9,7 @@ import { Book } from './book';
 })
 export class BookStoreService {
 
-  api = 'https://api.angular.schule';
+  api = 'https://api.angular.schule/';
 
   constructor(private http: HttpClient) { }
 

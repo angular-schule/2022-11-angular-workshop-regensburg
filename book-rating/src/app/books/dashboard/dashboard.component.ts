@@ -14,8 +14,7 @@ export class DashboardComponent {
   books: Book[] = [];
 
   constructor(private rs: BookRatingService,
-    private bs: BookStoreService,
-    private cd: ChangeDetectorRef) {
+    private bs: BookStoreService) {
 
     this.bs.getAll().subscribe(books => this.books = books);
     // setInterval(() => this.books = [], 1000)

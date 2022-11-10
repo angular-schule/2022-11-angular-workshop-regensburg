@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Observable, of, from, timer, interval, ReplaySubject, map, filter } from 'rxjs';
+import { Observable, of, from, timer, interval, ReplaySubject, map, filter, EMPTY } from 'rxjs';
 
 @Component({
   selector: 'rxw-creating',
@@ -22,7 +22,37 @@ export class CreatingComponent {
 
     /******************************/
 
-    
+    // Observer
+    const observer = {
+      next: (e: string) => this.log(e),
+      error: (err: any) => this.log('ERROR' + err),
+      complete:  () => this.log('COMPLETE')
+    }
+
+    // Observable
+    // var observable = of('😎', '😜', '🥸');
+
+    const observable = new Observable<string>(subscriber => {
+
+      subscriber.next('😎');
+      const x = setTimeout(() => subscriber.next('😜'), 1000);
+      const y = setTimeout(() => { subscriber.next('😜'); this.log('🧟') }, 2000);
+      const z = setTimeout(() => { subscriber.error('BUHHH!'); ; this.log('🧟')} , 3000);
+      // setTimeout(() => subscriber.next('😜'), 4000);
+
+      return () => {
+        this.log('Wir sollten die Zombies killen!');
+        clearTimeout(x);
+        clearTimeout(y);
+        clearTimeout(z);
+      }
+    });
+
+    const subscription = observable.subscribe(observer);
+
+    setTimeout(() => subscription.unsubscribe(), 1500);
+
+
     /******************************/
   }
 

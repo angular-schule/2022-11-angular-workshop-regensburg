@@ -8,7 +8,7 @@ import { BookStoreService } from '../shared/book-store.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
   // Achtung: bug sobald wir HTTP einführen!
-  changeDetection: ChangeDetectionStrategy.OnPush
+  // changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
   books: Book[] = [];
@@ -17,7 +17,7 @@ export class DashboardComponent {
     private bs: BookStoreService,
     private cd: ChangeDetectorRef) {
 
-    this.bs.getAll().subscribe(books => { this.books = books; cd.detectChanges(); });
+    this.bs.getAll().subscribe(books => this.books = books);
     // setInterval(() => this.books = [], 1000)
   }
 

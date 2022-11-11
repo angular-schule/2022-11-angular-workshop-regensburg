@@ -1,14 +1,16 @@
 <br-book
-  *ngFor="let b of books"
+  *ngFor="let b of books$ | async"
   (rateUp)="doRateUp($event)"
   (rateDown)="doRateDown($event)"
   [book]="b"></br-book>
 
-<div *ngIf="books.length === 0">
+<h3 *ngIf="loading$ | async">Lade Bücher...</h3>
+
+<div *ngIf="!(books$ | async)?.length">
   Keine Bücher vorhanden
 </div>
 
 
 <p>
-  <strong>Anzahl Bücher:</strong> {{ books.length }}
+  <strong>Anzahl Bücher:</strong> {{ (books$ | async)?.length }}
 </p>

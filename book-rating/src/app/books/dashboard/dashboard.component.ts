@@ -1,21 +1,20 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+
 import { Book } from '../shared/book';
-import { BookRatingService } from '../shared/book-rating.service';
-import { BookStoreService } from '../shared/book-store.service';
+import { selectBooks, selectLoading } from '../store/book.selectors';
 
 @Component({
   selector: 'br-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
-  // Achtung: bug sobald wir HTTP einführen!
-  // changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent {
-  books: Book[] = [];
 
-  constructor() {
+  books$ = inject(Store).select(selectBooks);
+  loading$ = inject(Store).select(selectLoading);
 
-  }
 
   doRateUp(book: Book) {
     // const ratedBook = this.rs.rateUp(book);

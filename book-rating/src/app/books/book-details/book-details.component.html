@@ -1,11 +1,15 @@
-<h1>
-  {{ (book$ | async)?.title }} -
-  {{ (book$ | async)?.price }} €
-</h1>
+<ng-container *ngIf="book$ | async as book">
 
-<p *ngIf="open">
-  Details: {{(book$ | async)?.description }}
-</p>
+  <h1>
+    {{ book.title }} -
+    {{ book.price }} €
+  </h1>
+
+  <p *ngIf="open">
+    Details: {{ book.description }}
+  </p>
+
+</ng-container>
 
 <button (click)="open = !open">Toggle Open</button>
 

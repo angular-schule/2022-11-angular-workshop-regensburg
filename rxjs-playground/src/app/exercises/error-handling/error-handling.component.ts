@@ -25,10 +25,14 @@ export class ErrorHandlingComponent {
   start() {
     this.es.randomError().pipe(
 
-      /******************************/
+      // retry({
+      //   count: 3,
+      //   delay: 2000
+      // }),
 
-      
-      /******************************/
+      ///catchError(err => throwError(() => err)),
+      // catchError(() => throwError(() => 'Oh Mist!'))
+      catchError(() => EMPTY)
 
     ).subscribe({
       next: e => this.logStream$.next(e),

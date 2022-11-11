@@ -13,30 +13,27 @@ import { BookStoreService } from '../shared/book-store.service';
 export class DashboardComponent {
   books: Book[] = [];
 
-  constructor(private rs: BookRatingService,
-    private bs: BookStoreService) {
+  constructor() {
 
-    this.bs.getAll().subscribe(books => this.books = books);
-    // setInterval(() => this.books = [], 1000)
   }
 
   doRateUp(book: Book) {
-    const ratedBook = this.rs.rateUp(book);
-    // const ratedBook = {
-    //   ...book,
-    //   rating: book.rating + 1
-    // }
-    this.updateList(ratedBook);
+    // const ratedBook = this.rs.rateUp(book);
+    // // const ratedBook = {
+    // //   ...book,
+    // //   rating: book.rating + 1
+    // // }
+    // this.updateList(ratedBook);
   }
 
   doRateDown(book: Book) {
-    const ratedBook = this.rs.rateDown(book);
-    this.updateList(ratedBook);
+    // const ratedBook = this.rs.rateDown(book);
+    // this.updateList(ratedBook);
   }
 
   private updateList(ratedBook: Book) {
-    this.books = this.books
-      .map(b => ratedBook.isbn === b.isbn ? ratedBook : b)
-      .sort((a, b) => b.rating - a.rating)
+    // this.books = this.books
+    //   .map(b => ratedBook.isbn === b.isbn ? ratedBook : b)
+    //   .sort((a, b) => b.rating - a.rating)
   }
 }

@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { createAction, props } from '@ngrx/store';
 import { Book } from '../shared/book';
 
@@ -12,5 +13,5 @@ export const loadBooksSuccess = createAction(
 
 export const loadBooksFailure = createAction(
   '[Book] Load Books Failure',
-  props<{ error: any }>()
+  props<{ error: HttpErrorResponse }>()
 );

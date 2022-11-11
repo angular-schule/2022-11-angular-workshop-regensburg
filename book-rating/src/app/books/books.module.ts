@@ -5,10 +5,11 @@ import { BooksRoutingModule } from './books-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { BookComponent } from './book/book.component';
 import { BookDetailsComponent } from './book-details/book-details.component';
-import { StoreModule } from '@ngrx/store';
+import { Store, StoreModule } from '@ngrx/store';
 import * as fromBook from './store/book.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { BookEffects } from './store/book.effects';
+import { loadBooks } from './store/book.actions';
 
 
 @NgModule({
@@ -27,4 +28,9 @@ import { BookEffects } from './store/book.effects';
     DashboardComponent
   ]
 })
-export class BooksModule { }
+export class BooksModule {
+
+  constructor(store: Store) {
+    store.dispatch(loadBooks())
+  }
+}

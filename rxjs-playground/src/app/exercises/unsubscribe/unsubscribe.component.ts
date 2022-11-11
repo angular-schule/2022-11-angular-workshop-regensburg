@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { timer } from 'rxjs';
+import { map, timer } from 'rxjs';
 
 @Component({
   selector: 'rxw-unsubscribe',

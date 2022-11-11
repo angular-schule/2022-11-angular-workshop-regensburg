@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { concatMap, map, mergeAll, mergeMap, share, shareReplay, switchMap } from 'rxjs';
+import { catchError, concatMap, map, mergeAll, mergeMap, of, share, shareReplay, switchMap } from 'rxjs';
 import { BookStoreService } from '../shared/book-store.service';
 
 @Component({
@@ -16,7 +17,11 @@ export class BookDetailsComponent {
   book$ = inject(ActivatedRoute).paramMap.pipe(
     map(paramMap => paramMap.get('isbn')!),
     switchMap(isbn => this.bs.getSingle(isbn)),
-    shareReplay(1)
+    catchError((err: HttpErrorResponse) => of({
+      title: 'FEHLER',
+      price: 0,
+      description: err.message
+    }))
   );
 
 

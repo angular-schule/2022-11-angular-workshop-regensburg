@@ -7,10 +7,10 @@ import { Book } from './book';
 export class BookRatingService {
 
   rateUp(book: Book): Book {
-    return book;
+    return book; // TODO!
   }
 
   rateDown(book: Book): Book {
-    return book;
+    return book; // TODO!
   }
 }

@@ -17,14 +17,12 @@ describe('DashboardComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      declarations: [
-        DashboardComponent
-      ],
-      providers: [{
-        provide: BookRatingService,
-        useValue: bookRatingMock
-      }]
-    })
+    imports: [DashboardComponent],
+    providers: [{
+            provide: BookRatingService,
+            useValue: bookRatingMock
+        }]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(DashboardComponent);

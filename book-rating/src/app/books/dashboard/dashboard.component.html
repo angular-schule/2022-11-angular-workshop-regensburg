@@ -1,8 +1,8 @@
-<br-book
+<app-book
   *ngFor="let b of books"
   (rateUp)="doRateUp($event)"
   (rateDown)="doRateDown($event)"
-  [book]="b"></br-book>
+  [book]="b"></app-book>
 
 <div *ngIf="books.length === 0">
   Keine Bücher vorhanden

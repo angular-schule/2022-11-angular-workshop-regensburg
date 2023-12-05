@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
@@ -7,7 +8,7 @@ import { BookRatingService } from '../shared/book-rating.service';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   books: Book[] = [];
 
   constructor(private rs: BookRatingService) {
@@ -31,30 +32,15 @@ export class DashboardComponent implements OnInit {
 
   doRateUp(book: Book) {
     const ratedBook = this.rs.rateUp(book);
-    this.updateList(ratedBook);
+    this.updateAndSortList(ratedBook);
   }
 
   doRateDown(book: Book) {
     const ratedBook = this.rs.rateDown(book);
-    this.updateList(ratedBook);
+    this.updateAndSortList(ratedBook);
   }
 
-  private updateList(ratedBook: Book) {
-    // [1,2,3,4,5].map(e => e * 10) // [10, 20, 30, 40, 50]
-    // [1,2,3,4,5,6,7,8,9,10].filter(e => e % 2 === 0) // [2,4,6,8,10]
-
-    this.books = this.books.map(b => {
-      if (b.isbn === ratedBook.isbn) {
-        return ratedBook;
-      } else {
-        return b;
-      }
-    });
-
-    // this.books = this.books.map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
+  private updateAndSortList(ratedBook: Book) {
+    this.books = this.books.map(b => b.isbn === ratedBook.isbn ? ratedBook : b)
   }
-
-  ngOnInit(): void {
-  }
-
 }

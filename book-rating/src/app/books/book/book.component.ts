@@ -4,9 +4,9 @@ import { NgIf, CurrencyPipe } from '@angular/common';
 
 @Component({
     selector: 'app-book',
+    standalone: true,
     templateUrl: './book.component.html',
     styleUrls: ['./book.component.scss'],
-    standalone: true,
     imports: [NgIf, CurrencyPipe]
 })
 export class BookComponent {

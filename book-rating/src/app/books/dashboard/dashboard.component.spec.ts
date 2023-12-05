@@ -1,9 +1,7 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { BookComponent } from '../book/book.component';
+
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
-
 import { DashboardComponent } from './dashboard.component';
 
 describe('DashboardComponent', () => {
@@ -19,9 +17,9 @@ describe('DashboardComponent', () => {
     await TestBed.configureTestingModule({
     imports: [DashboardComponent],
     providers: [{
-            provide: BookRatingService,
-            useValue: bookRatingMock
-        }]
+        provide: BookRatingService,
+        useValue: bookRatingMock
+    }]
 })
     .compileComponents();
 

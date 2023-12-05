@@ -7,9 +7,9 @@ import { NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-dashboard',
+    standalone: true,
     templateUrl: './dashboard.component.html',
     styleUrls: ['./dashboard.component.scss'],
-    standalone: true,
     imports: [NgFor, BookComponent, NgIf]
 })
 export class DashboardComponent {
